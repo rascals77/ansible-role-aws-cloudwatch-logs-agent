@@ -15,6 +15,12 @@
     include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
 
+- name: "Make /var/awslogs/etc/ directory"
+  file:
+    path: /var/awslogs/etc/
+    state: directory
+    mode: 755
+
 - name: "Set region for Cloudwatch endpoint"
   template:
     src: templates/etc/aws.conf.j2
